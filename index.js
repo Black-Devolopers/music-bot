@@ -11,11 +11,11 @@ client.config = require('./bot');
 
 client.commands = new discord.Collection();
 
-fs.readdirSync('./commands').forEach(dirs => {
-    const commands = fs.readdirSync(`./commands/${dirs}`).filter(files => files.endsWith('.js'));
+fs.readdirSync('./src').forEach(dirs => {
+    const commands = fs.readdirSync(`./src/${dirs}`).filter(files => files.endsWith('.js'));
 
     for (const file of commands) {
-        const command = require(`./commands/${dirs}/${file}`);
+        const command = require(`./src/${dirs}/${file}`);
         console.log(`Loading command ${file}`);
         client.commands.set(command.name.toLowerCase(), command);
     };
